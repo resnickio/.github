@@ -1,0 +1,41 @@
+name: Epic
+description: An outcome delivered by several stories, tracked with sub-issues.
+title: "<outcome, as a noun phrase>"
+labels: ["type:epic"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        An epic is an outcome someone can see, not a component.
+        Stories are added as **sub-issues**, not as a checklist in this body.
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome
+      description: What is true, for users or the operator, when this epic is done. Two to four sentences.
+    validations:
+      required: true
+  - type: textarea
+    id: exit
+    attributes:
+      label: Exit criteria
+      description: Observable checks. Each should be verifiable from a run, a record, a test or CI.
+      placeholder: |
+        - [ ] ...
+    validations:
+      required: true
+  - type: textarea
+    id: decisions
+    attributes:
+      label: Decisions
+      description: ADRs this depends on, accepted or still to write. Each open decision gets a `type:adr` sub-issue.
+  - type: textarea
+    id: scope
+    attributes:
+      label: Out of scope
+      description: What this epic explicitly doesn't do, so its stories don't drift.
+  - type: textarea
+    id: related
+    attributes:
+      label: Related
+      description: Other epics, issues, docs.

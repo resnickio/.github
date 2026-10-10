@@ -1,0 +1,13 @@
+# LF in the repository and in every working tree, whatever core.autocrlf says.
+* text=auto eol=lf
+
+# Windows scripts need CRLF to run.
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.pdf binary

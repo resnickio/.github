@@ -1,0 +1,17 @@
+# Local environment. Secrets never go in git (standards/security.md).
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.pyc
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Claude Code local state
+.claude/settings.local.json
+.claude/worktrees/

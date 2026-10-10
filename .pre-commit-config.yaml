@@ -1,0 +1,75 @@
+# This repository's local gate. CI runs the same hooks (.github/workflows/ci.yml).
+#   uvx pre-commit@4.6.2 install            once per clone
+#   uvx pre-commit@4.6.2 run --all-files    the `check` command
+minimum_pre_commit_version: "4.0.0"
+default_install_hook_types: [pre-commit, pre-push]
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=no]
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-added-large-files
+        args: [--maxkb=512]
+      - id: detect-private-key
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks
+
+  # A real Actions linter, because valid YAML can still be an invalid
+  # workflow: a double-quoted string inside ${{ }} parses fine as YAML and
+  # fails every job before it starts.
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.12
+    hooks:
+      - id: actionlint
+
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.38.2
+    hooks:
+      - id: check-github-workflows
+      - id: check-github-workflows-require-timeout
+      - id: check-github-issue-forms
+      - id: check-github-issue-config
+      - id: check-dependabot
+
+  # This repository has no uv.lock, so ruff is pinned by this rev instead of
+  # a uv-pinned local hook (standards/stacks/python.md). Config: ruff.toml.
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.10
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+    rev: 3.11.1
+    hooks:
+      - id: editorconfig-checker
+        alias: editorconfig
+
+  - repo: local
+    hooks:
+      - id: block-env-files
+        name: Block .env files (only .env.example is allowed)
+        language: fail
+        entry: "Secrets never go in git. Commit a .env.example with placeholder values instead:"
+        files: '(^|/)\.env(\..+)?$'
+        exclude: '(^|/)\.env\.example$'
+
+      - id: labels-and-forms
+        name: labels.yml is valid and covers every issue form's labels
+        language: system
+        entry: uv run --quiet scripts/validate.py
+        pass_filenames: false
+        files: '^(labels\.yml|\.github/ISSUE_TEMPLATE/.*|scripts/validate\.py)$'

@@ -1,0 +1,82 @@
+# Global labels for every @resnickio repository. Edit this file, not the GitHub UI.
+#
+# A repository adds its own labels, usually `area:*`, in its own
+# .github/labels.yml (a plain list of the same entries). The sync merges the
+# two. It never deletes a label that neither file mentions, and it deletes
+# `retired` labels only when asked to prune.
+#
+# `aliases` are older names for the same label. The sync renames an alias to
+# `name` instead of creating a new label, so every issue that carries the old
+# label keeps it. GitHub's default labels and older taxonomies converge this
+# way without relabeling anything by hand.
+#
+# Per issue: exactly one type:*, at most one priority:*, status:* as needed.
+# The issue forms in .github/ISSUE_TEMPLATE may only apply labels defined here;
+# scripts/validate.py enforces that, since GitHub applies a form's label only
+# if the repository already has it.
+
+labels:
+  - name: type:epic
+    color: "5319E7"
+    description: An outcome delivered by several stories; tracked with sub-issues
+  - name: type:story
+    color: "0E8A16"
+    description: A vertical slice of an epic that changes what someone can see or do
+    aliases: [enhancement, type/feature]
+  - name: type:task
+    color: "1D76DB"
+    description: One PR of work, sized for a single agent session
+  - name: type:bug
+    color: "D73A4A"
+    description: Behavior contradicts a contract, ADR, runbook, README or test
+    aliases: [bug, type/bug]
+  - name: type:spike
+    color: "FBCA04"
+    description: Time-boxed investigation; the output is writing, not merged code
+    aliases: [type/spike]
+  - name: type:adr
+    color: "000000"
+    description: A decision that must be accepted as an ADR before dependent work starts
+    aliases: [type/adr]
+  - name: type:chore
+    color: "EDEDED"
+    description: Maintenance with no behavior change; dependency bumps, CI, cleanup
+    aliases: [dependencies, type/chore]
+
+  - name: priority:p0
+    color: "B60205"
+    description: Production is down, data is at risk, or a security issue is live
+  - name: priority:p1
+    color: "E99695"
+    description: On the critical path for the current milestone
+  - name: priority:p2
+    color: "F9D0C4"
+    description: Wanted this milestone, not blocking
+  - name: priority:p3
+    color: "FEF2C0"
+    description: Backlog
+
+  - name: status:blocked
+    color: "7057FF"
+    description: Waiting on another issue; the body says which
+  - name: status:needs-adr
+    color: "7057FF"
+    description: A decision must be accepted before this can start
+    aliases: [needs/adr]
+
+  - name: agent:ready
+    color: "0052CC"
+    description: The body has enough context for an unattended agent session to finish it
+    aliases: [session-sized]
+
+# GitHub's default labels that this taxonomy replaces. "Close as duplicate" and
+# "close as not planned" are close reasons, not labels; documentation work is
+# a type:task.
+retired:
+  - documentation
+  - duplicate
+  - good first issue
+  - help wanted
+  - invalid
+  - question
+  - wontfix

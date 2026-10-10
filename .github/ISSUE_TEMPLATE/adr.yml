@@ -1,0 +1,27 @@
+name: Decision (ADR)
+description: A decision that blocks work until an ADR is accepted.
+title: "ADR: <decision>"
+labels: ["type:adr"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The output is a `proposed` ADR in `docs/adr/`, with options, tradeoffs and a recommendation.
+        Start it from `0000-template.md`, as described in [the decision process](https://github.com/resnickio/.github/blob/main/standards/decisions.md).
+        The maintainer accepts it; an agent never accepts its own proposal.
+        Issues waiting on it carry `status:needs-adr` until then.
+  - type: textarea
+    id: question
+    attributes:
+      label: Decision to make
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: Options known so far
+  - type: textarea
+    id: blocks
+    attributes:
+      label: Blocks
+      description: Issues that can't start until this is accepted.

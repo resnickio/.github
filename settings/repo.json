@@ -1,0 +1,25 @@
+{
+  "$comment": "Baseline settings for every repository. Rationale: standards/repo-settings.md. A repository that must differ commits .github/repo-settings.json with only the overriding keys and a $reason.",
+  "repo": {
+    "allow_squash_merge": true,
+    "allow_merge_commit": false,
+    "allow_rebase_merge": false,
+    "squash_merge_commit_title": "PR_TITLE",
+    "squash_merge_commit_message": "COMMIT_MESSAGES",
+    "allow_auto_merge": true,
+    "allow_update_branch": true,
+    "delete_branch_on_merge": true,
+    "has_wiki": false
+  },
+  "security": {
+    "vulnerability_alerts": true,
+    "automated_security_fixes": true
+  },
+  "public_only": {
+    "private_vulnerability_reporting": true,
+    "security_and_analysis": {
+      "secret_scanning": { "status": "enabled" },
+      "secret_scanning_push_protection": { "status": "enabled" }
+    }
+  }
+}

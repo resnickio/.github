@@ -1,0 +1,53 @@
+name: Story
+description: A vertical slice of an epic that changes what someone can see or do. One to three PRs.
+title: "<who> can <what>"
+labels: ["type:story"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A story is a sub-issue of at most one epic.
+        It's done when its acceptance criteria hold on `main`.
+        If it needs more than one PR, split it into `type:task` sub-issues.
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Why now, and what exists already (files, modules, contracts, ADRs). Enough for a fresh session to start without asking.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Observable outcomes. "The export contains one row per member" beats "export works".
+      placeholder: |
+        - [ ] ...
+    validations:
+      required: true
+  - type: textarea
+    id: contracts
+    attributes:
+      label: Contracts and invariants touched
+      description: Schemas, APIs or rules this changes. A breaking change bumps the version. "None" is a valid answer.
+    validations:
+      required: true
+  - type: dropdown
+    id: adr
+    attributes:
+      label: Needs a decision?
+      options:
+        - "No: covered by an accepted ADR, or no decision involved"
+        - "Yes: an ADR is open or needed (link it and add status:needs-adr)"
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Out of scope
+      description: What this deliberately doesn't do, so the work doesn't drift.
+  - type: textarea
+    id: verify
+    attributes:
+      label: How to verify
+      description: The commands, run or screenshots a reviewer uses to confirm it.

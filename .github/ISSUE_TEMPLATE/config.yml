@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: How work is tracked
+    url: https://github.com/resnickio/.github/blob/main/standards/git-workflow.md
+    about: Issue types, labels, the ADR gate, and what an agent session needs from an issue.
+  - name: Report a security vulnerability
+    url: https://github.com/resnickio/.github/blob/main/SECURITY.md
+    about: Please don't file vulnerabilities as issues. This explains how to report one privately.

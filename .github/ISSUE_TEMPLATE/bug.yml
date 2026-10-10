@@ -1,0 +1,40 @@
+name: Bug
+description: Something doesn't do what its docs, contract, ADR or tests say it should.
+title: "<area>: <symptom>"
+labels: ["type:bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A bug is behavior that contradicts something written down. If nothing says how it should behave, it's a story.
+        It's done when the fix is on `main` **with a regression test that fails without the fix.**
+        **Security issue?** Don't file it here. Follow the repository's security policy instead.
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened
+      description: The version or commit, environment, time (UTC), and the IDs, logs or output that show it.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should have happened
+      description: Cite what says so, such as a README, ADR, contract, runbook or test.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduce
+      description: The smallest set of commands, inputs or config that triggers it.
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact
+      options:
+        - "Low: cosmetic, or has a workaround"
+        - "Degraded: wrong results, or a feature is unusable"
+        - "Outage: production down or data at risk"
+    validations:
+      required: true

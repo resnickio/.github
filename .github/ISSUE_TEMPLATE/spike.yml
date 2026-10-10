@@ -1,0 +1,26 @@
+name: Spike
+description: A time-boxed investigation whose output is a written result, not shipped code.
+title: "Spike: <question>"
+labels: ["type:spike"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What we need to know to decide or build something. Name the issue or ADR that is waiting on the answer.
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: Method and time box
+      description: How the answer will be found (a prototype branch, a benchmark, a measured run) and the cap on time or cost.
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: Where the result lands, such as a comment here, a section in an ADR, or a `docs/` note. Prototype code is not merged.
+    validations:
+      required: true

@@ -1,0 +1,22 @@
+# This repository's own pins: the actions its CI uses. Pre-commit hook revs
+# aren't a Dependabot ecosystem; bump them with `pre-commit autoupdate`, in a PR
+# like everything else.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    # Let a release age a week before adopting it. Most compromised releases
+    # are caught and pulled within days.
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 5
+    labels: ["type:chore"]
+    commit-message:
+      prefix: "deps"
+    groups:
+      actions:
+        patterns: ["*"]
+        update-types: [minor, patch]

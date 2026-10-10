@@ -1,0 +1,28 @@
+name: Task
+description: One PR of work, sized for a single agent session. Usually a sub-issue of a story or an epic.
+title: "<area>: <change>"
+labels: ["type:task"]
+body:
+  - type: textarea
+    id: change
+    attributes:
+      label: Change
+      description: What to build or fix, with file paths. A fresh session should be able to start from this alone.
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: Done when
+      description: Observable checks, not intentions.
+      placeholder: |
+        - [ ] ...
+        - [ ] tests: ...
+        - [ ] the repository's `check` command passes
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Constraints, contracts or ADRs touched, things already tried, links.
